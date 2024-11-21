@@ -1,0 +1,19 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--brand-dark: #a6c5e3;
+	--brand-light: #e9f2f3;
+	--gray-color: #aaa;
+}
+
+
+.container {
+	width: 100%;
+	max-width: 1920px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
