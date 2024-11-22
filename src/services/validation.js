@@ -38,7 +38,7 @@ export const validateAddress = (value) => {
 };
 
 export const validateExpirience = (value) => {
-	if (!value) return ""; // Поле необязательное, ошибки нет.
+	if (!value) return "";
 
 	if (value.length > 500) {
 		return "Experience must not exceed 500 characters.";
