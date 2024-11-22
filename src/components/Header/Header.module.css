@@ -1,14 +1,15 @@
 .header_wrapper {
-	padding-block: 15px;
+	padding-block: clamp(10px, 2vw, 15px);
 	display: flex;
 	align-items: center;
 	justify-content: start;
-	gap: 40px;
+	gap: clamp(16px, 5vw, 40px);
 }
 
 .arrow {
-	width: 40px;
-	height: 40px;
+	flex: 0 0 auto;
+	width: clamp(20px, 5vw, 40px);
+	height: clamp(20px, 5vw, 40px);
 	cursor: pointer;
 
 }
@@ -24,10 +25,10 @@
 }
 
 .logo {
-	max-width: 320px;
-	height: 54px;
+	max-width: clamp(160px, 34vw, 320px);
 }
 
 .page_name {
-	font-size: 48px;
+	font-family: aeroport;
+	font-size: clamp(20px, 5vw, 48px);
 }

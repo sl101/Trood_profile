@@ -8,12 +8,49 @@
 	--brand-dark: #a6c5e3;
 	--brand-light: #e9f2f3;
 	--gray-color: #aaa;
+	--aeroport: "Aeroport", serif;
+	--roboto: "Roboto", serif;
+	--inter-regular: "Inter-Regular", serif;
+	--inter-medium: "Inter-Medium", serif;
 }
+
+@font-face {
+	font-family: 'Aeroport';
+	src: url('/fonts/Aeroport.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('/fonts/Roboto-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Inter-Regular';
+	src: url('/fonts/Inter-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Inter-Medium';
+	src: url('/fonts/Inter-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+}
+
 
 
 .container {
 	width: 100%;
 	max-width: 1920px;
-	padding: 0 15px;
+	padding: 0 clamp(6px, 1.6vw, 15px);
 	margin: 0 auto;
+}
+
+html {
+	font-family: var(--roboto);
 }

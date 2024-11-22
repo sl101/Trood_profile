@@ -1,4 +1,4 @@
-import { Header } from "./components";
+import { Header, ProfilePage } from "./components";
 
 function App() {
 
@@ -6,6 +6,7 @@ function App() {
 	return (
 		<>
 			<Header />
+			<ProfilePage />
 		</>
 	);
 }
