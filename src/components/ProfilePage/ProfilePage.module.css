@@ -1,11 +1,27 @@
-.profile_page {
-	background-color: var(--gray-color);
+.page {
+	padding-block: clamp(25px, 3vw, 60px);
 }
 
-.profile_content {
+.content {
+	padding-left: 40px;
 	display: flex;
+	flex-wrap: wrap-reverse;
 	justify-content: space-between;
 	align-items: center;
-	gap: 40px;
-	;
+	gap: clamp(10px, 1vw, 60px);
+}
+
+.inner {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	gap: clamp(40px, 4vw, 72px);
+}
+
+@media (max-width: 1139px) {
+	.content {
+		padding-left: 0;
+		justify-content: center;
+		text-align: center;
+	}
 }

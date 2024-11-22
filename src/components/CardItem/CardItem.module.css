@@ -1,0 +1,37 @@
+.card_item {
+	position: relative;
+	font-family: var(--inter-regular);
+	width: clamp(280px, 55vw, 500px);
+	height: clamp(160px, 30vw, 290px);
+	padding: clamp(20px, 6vw, 54px) clamp(20px, 4vw, 44px);
+	background-color: var(--dark-color);
+	color: var(--gray-color);
+	border-radius: 24px;
+}
+
+.title {
+	font-size: clamp(20px, 4vw, 32px);
+}
+
+.card_action {
+	position: absolute;
+	cursor: pointer;
+	outline: none;
+	width: 66px;
+	height: 66px;
+	font-size: 40px;
+	right: clamp(10px, 3vw, 32px);
+	bottom: clamp(10px, 3vw, 32px);
+	border-radius: 50%;
+	border: 1px solid transparent;
+	color: var(--gray-color);
+	transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+}
+
+.card_action:hover {
+	background-color: var(--brand-dark);
+}
+
+.card_action:focus {
+	border-color: var(--gray-color);
+}

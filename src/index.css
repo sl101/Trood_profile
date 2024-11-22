@@ -7,11 +7,29 @@
 :root {
 	--brand-dark: #a6c5e3;
 	--brand-light: #e9f2f3;
-	--gray-color: #aaa;
+	--gray-color: rgba(0, 0, 0, 0.5);
+	--light-color: #f5f4f4;
+	--dark-color: #d9d9d9;
+	--black-color: #000;
+	--white-color: #fff;
+	--brand-gradient: linear-gradient(180deg, #E9F2F3 0%, #A6C5E3 100%);
+
+
 	--aeroport: "Aeroport", serif;
 	--roboto: "Roboto", serif;
 	--inter-regular: "Inter-Regular", serif;
 	--inter-medium: "Inter-Medium", serif;
+}
+
+button {
+	background-color: inherit;
+	border: none;
+}
+
+ul,
+li,
+ol {
+	list-style: none;
 }
 
 @font-face {
@@ -42,7 +60,17 @@
 	font-style: normal;
 }
 
-
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
 
 .container {
 	width: 100%;
@@ -53,4 +81,5 @@
 
 html {
 	font-family: var(--roboto);
+	background-color: var(--light-color);
 }
