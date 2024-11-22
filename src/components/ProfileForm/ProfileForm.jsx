@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AvatarUploader } from "../";
+import { AvatarUploader, ProfileVisibility } from "../";
 import {
 	validateName,
 	validateLastname,
@@ -8,7 +8,6 @@ import {
 	validateEmail,
 	validateAddress,
 	validateExpirience,
-	validateVisibility,
 	validateInterests
 } from "../../services/validation";
 import styles from "./ProfileForm.module.css";
@@ -97,13 +96,6 @@ export const ProfileForm = ({ profileData, onSave }) => {
 		}));
 	};
 
-	const handleVisibilityChange = (e) => {
-		const value = e.target.value;
-		const error = validateVisibility(value);
-		setErrors((prev) => ({ ...prev, visibility: error }));
-		setFormData((prev) => ({ ...prev, visibility: value }));
-	};
-
 	const handleAddInterest = () => {
 		const trimmedInterest = newInterest.trim();
 		const error = validateInterests([...formData.interests, trimmedInterest]);
@@ -180,25 +172,7 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				))}
 			</ul>
 
-			<div className={styles.radio_content}>
-				<p className={styles.label}>Show your profile in Launch Pad?</p>
-				<div className={styles.radio_group}>
-					{["Private", "Public"].map((value) => (
-						<label key={value} className={styles.radio_label}>
-							<input
-								type="radio"
-								name="visibility"
-								value={value}
-								checked={formData.visibility === value}
-								onChange={handleVisibilityChange}
-								className={styles.radio_input}
-							/>
-							{value}
-						</label>
-					))}
-				</div>
-				{errors.visibility && <p className={styles.errorMessage}>{errors.visibility}</p>}
-			</div>
+			<ProfileVisibility formData={formData} setFormData={setFormData} />
 
 			{/*<div className={styles.field}>
 				<label htmlFor="interests">The scope of your interest:</label>

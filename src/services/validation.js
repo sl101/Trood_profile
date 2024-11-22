@@ -52,12 +52,6 @@ export const validateExpirience = (value) => {
 	return "";
 };
 
-export const validateVisibility = (value) => {
-	const validOptions = ["Public", "Private"];
-	if (!validOptions.includes(value)) return "Invalid visibility option.";
-	return null;
-};
-
 export const validateInterests = (interests) => {
 	if (interests.length > 10) {
 		return "You can add up to 10 interests only.";

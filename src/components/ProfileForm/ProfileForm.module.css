@@ -31,60 +31,6 @@
 	outline: none;
 }
 
-.radio_content {
-	width: 100%;
-	margin-top: 24px;
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	gap: 16px;
-}
-
-.radio_group {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	gap: 32px;
-}
-
-.radio_label {
-	cursor: pointer;
-	font-size: 16px;
-	line-height: 16px;
-	display: flex;
-	align-items: center;
-	gap: 14px;
-}
-
-.radio_input {
-	position: relative;
-	appearance: none;
-	height: 16px;
-	width: 16px;
-	background-color: transparent;
-	border: 1px solid var(--gray-color);
-	border-radius: 100%;
-	vertical-align: text-bottom;
-}
-
-.radio_input:before {
-	content: "";
-	position: absolute;
-	margin: auto;
-	top: -2px;
-	left: -2px;
-	right: 0;
-	bottom: 0;
-	overflow: hidden;
-}
-
-.radio_input:checked::before {
-	border: 5px solid transparent;
-	border-radius: 100%;
-	background: var(--gray-color);
-	margin: 4px;
-}
-
 .controls {
 	margin-top: 50px;
 	width: 100%;
