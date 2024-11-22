@@ -3,19 +3,26 @@
 }
 
 .content {
-	padding-left: 40px;
+	padding-left: 30px;
 	display: flex;
 	flex-wrap: wrap-reverse;
 	justify-content: space-between;
 	align-items: center;
-	gap: clamp(10px, 1vw, 60px);
+	gap: 18px;
 }
 
 .inner {
+	width: 56%;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
 	gap: clamp(40px, 4vw, 72px);
+}
+
+@media (max-width: 1920px) {
+	.inner {
+		width: 100%;
+	}
 }
 
 @media (max-width: 1139px) {

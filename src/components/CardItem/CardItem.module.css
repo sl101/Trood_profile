@@ -1,9 +1,11 @@
 .card_item {
 	position: relative;
 	font-family: var(--inter-regular);
-	width: clamp(280px, 55vw, 500px);
-	height: clamp(160px, 30vw, 290px);
-	padding: clamp(20px, 6vw, 54px) clamp(20px, 4vw, 44px);
+	max-width: 500px;
+	width: 100%;
+	height: clamp(230px, 30vw, 290px);
+	padding: clamp(30px, 4vw, 54px) clamp(26px, 4vw, 44px);
+	text-align: start;
 	background-color: var(--dark-color);
 	color: var(--gray-color);
 	border-radius: 24px;
