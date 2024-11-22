@@ -1,7 +1,12 @@
 .form {
 	padding: 106px 50px 40px;
 	max-width: 792px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	background: var(--brand-gradient);
 	border-radius: 24px;
+
 }

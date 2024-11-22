@@ -1,8 +1,8 @@
 export const loadProfileData = () => {
-	const data = localStorage.getItem("profileData");
+	const data = localStorage.getItem("formData");
 	return data ? JSON.parse(data) : null;
 };
 
 export const saveProfileData = (data) => {
-	localStorage.setItem("profileData", JSON.stringify(data));
+	localStorage.setItem("formData", JSON.stringify(data));
 };

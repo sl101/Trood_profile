@@ -4,5 +4,6 @@ import { ProjectsSection } from "./ProjectsSection/ProjectsSection";
 import { TasksSection } from "./TasksSection/TasksSection";
 import { CardItem } from "./CardItem/CardItem";
 import { ProfileForm } from "./ProfileForm/ProfileForm";
+import { AvatarUploader } from "./AvatarUploader/AvatarUploader";
 
-export { Header, ProfilePage, ProjectsSection, TasksSection, CardItem, ProfileForm };
+export { Header, ProfilePage, ProjectsSection, TasksSection, CardItem, ProfileForm, AvatarUploader };
