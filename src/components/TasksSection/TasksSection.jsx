@@ -1,13 +1,7 @@
 import { CardItem } from "../";
 import styles from './TasksSection.module.css';
 
-const tasks = [
-	{ id: 1, title: "Create task" },
-	//{ id: 2, title: "Create task" },
-	//{ id: 3, title: "Create task" }
-];
-
-export const TasksSection = () => {
+export const TasksSection = ({ tasks }) => {
 
 
 	const handleCreateTask = (id) => {

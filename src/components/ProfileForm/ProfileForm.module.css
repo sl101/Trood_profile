@@ -1,6 +1,6 @@
 .form {
 	padding: 106px 50px 40px;
-	max-width: 792px;
+	max-width: 790px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -8,5 +8,41 @@
 	width: 100%;
 	background: var(--brand-gradient);
 	border-radius: 24px;
+}
 
+.list {
+	width: 100%;
+	margin-top: 28px;
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+
+.input,
+.btn {
+	width: 100%;
+	padding: 20px 18px;
+	border: 1px solid var(--gray-color);
+	border-radius: 12px;
+	background-color: transparent;
+	color: var(--black-color);
+	outline: none;
+}
+
+.controls {
+	margin-top: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.btn {
+	cursor: pointer;
+	transition: background-color 0.5s ease-in-out;
+}
+
+.btn:hover {
+	background-color: var(--brand-light);
 }

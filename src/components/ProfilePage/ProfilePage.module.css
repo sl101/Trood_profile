@@ -19,7 +19,7 @@
 	gap: clamp(40px, 4vw, 72px);
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1919px) {
 	.inner {
 		width: 100%;
 	}

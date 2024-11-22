@@ -5,10 +5,10 @@ export const validateName = (value) => {
 	return null;
 };
 
-export const validateSurname = (value) => {
+export const validateLastname = (value) => {
 	const regex = /^[a-zA-Zа-яА-ЯёЁ\s-]{2,50}$/;
-	if (!value) return "Surname is required.";
-	if (!regex.test(value)) return "Surname must be 2-50 characters and contain only letters, spaces, or hyphens.";
+	if (!value) return "Lastname is required.";
+	if (!regex.test(value)) return "Lastname must be 2-50 characters and contain only letters, spaces, or hyphens.";
 	return null;
 };
 
@@ -24,24 +24,54 @@ export const validatePhone = (value) => {
 	return null;
 };
 
+export const validateEmail = (value) => {
+	if (!value) return "Email is required.";
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailRegex.test(value)) return "Invalid email format.";
+	if (value.length > 100) return "Email must be 100 characters or less.";
+	return null;
+};
+
 export const validateAddress = (value) => {
 	if (value.length > 200) return "Address must be 200 characters or less.";
 	return null;
 };
 
-export const validateLinks = (value) => {
-	const regex = /^(https?:\/\/)?[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+.*$/;
-	if (value && !regex.test(value)) return "Links must be a valid URL.";
-	if (value.length > 200) return "Links must be 200 characters or less.";
+export const validateExpirience = (value) => {
+	if (!value) return ""; // Поле необязательное, ошибки нет.
+
+	if (value.length > 500) {
+		return "Experience must not exceed 500 characters.";
+	}
+
+	const experienceRegex = /^[\wа-яА-ЯёЁ0-9\s.,'"\-()!]+$/u;
+	if (!experienceRegex.test(value)) {
+		return "Experience contains invalid characters.";
+	}
+
+	return "";
+};
+
+export const validateVisibility = (value) => {
+	const validOptions = ["Public", "Private"];
+	if (!validOptions.includes(value)) return "Invalid visibility option.";
 	return null;
 };
 
-export const validateInterests = (value) => {
-	if (Array.isArray(value)) {
-		if (value.length > 10) return "You can have up to 10 interests.";
-		for (const interest of value) {
-			if (interest.length > 30) return "Each interest must be 30 characters or less.";
-		}
+export const validateInterests = (interests) => {
+	if (interests.length > 10) {
+		return "You can add up to 10 interests only.";
 	}
-	return null;
+
+	const invalidInterest = interests.find(
+		(interest) =>
+			interest.length > 30 || !/^[\wа-яА-ЯёЁ\s.,]+$/u.test(interest.trim())
+	);
+
+	if (invalidInterest) {
+		return `Invalid interest: "${invalidInterest}". 
+            Only letters, numbers, spaces, commas, and dots are allowed. Max length: 30 characters.`;
+	}
+
+	return "";
 };

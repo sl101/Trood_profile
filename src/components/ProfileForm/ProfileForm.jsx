@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { AvatarUploader } from "../";
 import {
 	validateName,
-	validateSurname,
+	validateLastname,
 	validateJobTitle,
 	validatePhone,
+	validateEmail,
 	validateAddress,
-	validateLinks,
+	validateExpirience,
+	validateVisibility,
+	validateInterests
 } from "../../services/validation";
 import styles from "./ProfileForm.module.css";
 
@@ -15,48 +18,57 @@ const inputFields = [
 		label: "Name",
 		name: "name",
 		type: "text",
-		placeholder: "Enter your name",
+		placeholder: "Name",
 		validate: validateName,
 	},
 	{
-		label: "Surname",
-		name: "surname",
+		label: "Lastname",
+		name: "lastname",
 		type: "text",
-		placeholder: "Enter your surname",
-		validate: validateSurname,
+		placeholder: "Lastname",
+		validate: validateLastname,
 	},
 	{
 		label: "Job Title",
 		name: "jobTitle",
 		type: "text",
-		placeholder: "Enter your job title",
+		placeholder: "Job Title",
 		validate: validateJobTitle,
 	},
 	{
 		label: "Phone",
 		name: "phone",
 		type: "tel",
-		placeholder: "+1234567890",
+		placeholder: "Phone",
 		validate: validatePhone,
+	},
+	{
+		label: "Email",
+		name: "email",
+		type: "email",
+		placeholder: "Email",
+		validate: validateEmail,
 	},
 	{
 		label: "Address",
 		name: "address",
 		type: "text",
-		placeholder: "Enter your address",
+		placeholder: "Address",
 		validate: validateAddress,
 	},
 	{
-		label: "Links",
-		name: "links",
-		type: "url",
-		placeholder: "https://example.com",
-		validate: validateLinks,
+		label: "Experience",
+		name: "experience",
+		type: "text",
+		placeholder: "Experience",
+		validate: validateExpirience,
 	},
 ];
 
 export const ProfileForm = ({ profileData, onSave }) => {
 	const [formData, setFormData] = useState(profileData);
+	const [newInterest, setNewInterest] = useState("");
+	const [isAddingInterest, setIsAddingInterest] = useState(false);
 	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
@@ -85,6 +97,38 @@ export const ProfileForm = ({ profileData, onSave }) => {
 		}));
 	};
 
+	const handleVisibilityChange = (e) => {
+		const value = e.target.value;
+		const error = validateVisibility(value);
+		setErrors((prev) => ({ ...prev, visibility: error }));
+		setFormData((prev) => ({ ...prev, visibility: value }));
+	};
+
+	const handleAddInterest = () => {
+		const trimmedInterest = newInterest.trim();
+		const error = validateInterests([...formData.interests, trimmedInterest]);
+
+		if (error) {
+			setErrors((prev) => ({ ...prev, interests: error }));
+			return;
+		}
+
+		setFormData((prev) => ({
+			...prev,
+			interests: [...prev.interests, trimmedInterest],
+		}));
+		setNewInterest("");
+		setErrors((prev) => ({ ...prev, interests: "" }));
+		setIsAddingInterest(false);
+	};
+
+	const handleRemoveInterest = (index) => {
+		setFormData((prev) => ({
+			...prev,
+			interests: prev.interests.filter((_, i) => i !== index),
+		}));
+	};
+
 	const handleCancel = (e) => {
 		e.preventDefault();
 		setFormData(profileData);
@@ -102,6 +146,9 @@ export const ProfileForm = ({ profileData, onSave }) => {
 			}
 		});
 
+		//newErrors.interests = validateInterests(formData.interests);
+		//newErrors.visibility = validateVisibility(formData.visibility);
+
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors);
 			return;
@@ -116,33 +163,104 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				avatarPath={formData.avatar}
 				onAvatarChange={handleAvatarChange} />
 
-			{inputFields.map(({ label, name, type, placeholder }) => (
-				<div key={name} className={styles.inputGroup}>
-					<label htmlFor={name} className={styles.label}>
-						{label}
-					</label>
-					<input
-						id={name}
-						name={name}
-						type={type}
-						placeholder={placeholder}
-						value={formData[name] || ""}
-						onChange={handleInputChange}
-						className={`${styles.input} ${errors[name] ? styles.errorInput : ""}`}
-					/>
-					{errors[name] && <p className={styles.errorMessage}>{errors[name]}</p>}
+			<ul className={styles.list}>
+				{inputFields.map(({ name, type, placeholder }) => (
+					<li key={name} className={styles.inputGroup}>
+						<input
+							id={name}
+							name={name}
+							type={type}
+							placeholder={placeholder}
+							value={formData[name] || ""}
+							onChange={handleInputChange}
+							className={`${styles.input} ${errors[name] ? styles.errorInput : ""}`}
+						/>
+						{errors[name] && <p className={styles.errorMessage}>{errors[name]}</p>}
+					</li>
+				))}
+			</ul>
+
+			{/*<div className={styles.inputGroup}>
+				<label className={styles.label}>Show your profile in Launch Pad?</label>
+				<div className={styles.radioGroup}>
+					{["Private", "Public"].map((value) => (
+						<label key={value} className={styles.radioLabel}>
+							<input
+								type="radio"
+								name="visibility"
+								value={value}
+								checked={formData.visibility === value}
+								onChange={handleVisibilityChange}
+								className={styles.radioInput}
+							/>
+							{value}
+						</label>
+					))}
 				</div>
-			))}
+				{errors.visibility && <p className={styles.errorMessage}>{errors.visibility}</p>}
+			</div>*/}
+
+			{/*<div className={styles.field}>
+				<label htmlFor="interests">The scope of your interest:</label>
+				<div className={styles.interests}>
+					{formData.interests.map((interest, index) => (
+						<div key={index} className={styles.interest}>
+							<span>{interest}</span>
+							<button
+								type="button"
+								onClick={() => handleRemoveInterest(index)}
+								className={styles.remove}
+							>
+								&times;
+							</button>
+						</div>
+					))}
+				</div>
+
+				{isAddingInterest && (
+					<div className={styles.addInterest}>
+						<input
+							type="text"
+							value={newInterest}
+							onChange={(e) => setNewInterest(e.target.value)}
+							placeholder="Enter a new interest"
+							maxLength={30}
+						/>
+						<button type="button" onClick={handleAddInterest}>
+							Save
+						</button>
+						<button
+							type="button"
+							onClick={() => setIsAddingInterest(false)}
+							className={styles.cancel}
+						>
+							Cancel
+						</button>
+					</div>
+				)}
+
+				{!isAddingInterest && formData.interests.length < 10 && (
+					<button
+						type="button"
+						onClick={() => setIsAddingInterest(true)}
+						className={styles.addButton}
+					>
+						Add Interest
+					</button>
+				)}
+
+				{errors.interests && <p className={styles.error}>{errors.interests}</p>}
+			</div>*/}
 
 			<div className={styles.controls}>
-				<button type="submit" className={styles.saveButton}>
+				<button type="submit" className={styles.btn} onClick={handleSave}>
 					Save
 				</button>
-				<button onClick={handleCancel} className={styles.cancelButton}>
+				<button onClick={handleCancel} className={styles.btn}>
 					Cancel
 				</button>
-			</div>
-		</form>
+			</div >
+		</form >
 	);
 }
 

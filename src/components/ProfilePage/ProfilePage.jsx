@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { ProjectsSection, TasksSection, ProfileForm } from "../";
-import styles from './ProfilePage.module.css';
 import { useEffect } from "react";
+import { ProjectsSection, TasksSection, ProfileForm } from "../";
 import { loadProfileData, saveProfileData } from "../../services/storageService";
+import styles from './ProfilePage.module.css';
 
 export const ProfilePage = () => {
 	const [profileData, setProfileData] = useState({
 		name: "",
-		surname: "",
+		lastname: "",
 		jobTitle: "",
 		phone: "",
 		address: "",
@@ -15,6 +15,15 @@ export const ProfilePage = () => {
 		links: "",
 		avatar: null,
 		visibility: "Private",
+		projects: [
+			{ id: 1, title: " Create project" },
+			//{ id: 2, title: " Create project" },
+		],
+		tasks: [
+			{ id: 1, title: "Create task" },
+			//{ id: 2, title: "Create task" },
+			//{ id: 3, title: "Create task" }
+		]
 	});
 
 	useEffect(() => {
@@ -33,8 +42,8 @@ export const ProfilePage = () => {
 			<div className="container">
 				<div className={styles.content}>
 					<div className={styles.inner}>
-						<ProjectsSection />
-						<TasksSection />
+						<ProjectsSection projects={profileData.projects} />
+						<TasksSection tasks={profileData.tasks} />
 					</div>
 					<ProfileForm profileData={profileData} onSave={handleSave} />
 				</div>

@@ -1,12 +1,7 @@
 import { CardItem } from "../";
 import styles from './ProjectsSection.module.css';
 
-const projects = [
-	{ id: 1, title: " Create project" },
-	//{ id: 2, title: " Create project" },
-];
-
-export const ProjectsSection = () => {
+export const ProjectsSection = ({ projects }) => {
 	const handleCreateProject = (id) => {
 		console.log(id);
 	};
