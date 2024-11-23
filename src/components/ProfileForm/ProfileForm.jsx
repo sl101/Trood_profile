@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AvatarUploader, ProfileVisibility } from "../";
+import { AvatarUploader, ProfileData, ProfileVisibility } from "../";
 import {
 	validateName,
 	validateLastname,
@@ -74,21 +74,6 @@ export const ProfileForm = ({ profileData, onSave }) => {
 		setFormData(profileData);
 	}, [profileData]);
 
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-		setFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-
-		const field = inputFields.find((field) => field.name === name);
-		if (field && field.validate) {
-			const error = field.validate(value);
-			setErrors((prev) => ({ ...prev, [name]: error }));
-		}
-	};
-
-
 	const handleAvatarChange = (avatarPath) => {
 		setFormData((prev) => ({
 			...prev,
@@ -155,24 +140,16 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				avatarPath={formData.avatar}
 				onAvatarChange={handleAvatarChange} />
 
-			<ul className={styles.list}>
-				{inputFields.map(({ name, type, placeholder }) => (
-					<li key={name} className={styles.inputGroup}>
-						<input
-							id={name}
-							name={name}
-							type={type}
-							placeholder={placeholder}
-							value={formData[name] || ""}
-							onChange={handleInputChange}
-							className={`${styles.input} ${errors[name] ? styles.error_input : ""}`}
-						/>
-						{errors[name] && <p className={styles.error_message}>{errors[name]}</p>}
-					</li>
-				))}
-			</ul>
+			<ProfileData
+				inputFields={inputFields}
+				formData={formData}
+				setFormData={setFormData}
+				errors={errors}
+				setErrors={setErrors} />
 
-			<ProfileVisibility formData={formData} setFormData={setFormData} />
+			<ProfileVisibility
+				formData={formData}
+				setFormData={setFormData} />
 
 			{/*<div className={styles.field}>
 				<label htmlFor="interests">The scope of your interest:</label>

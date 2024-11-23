@@ -11,26 +11,6 @@
 	border-radius: 24px;
 }
 
-.list {
-	width: 100%;
-	margin-top: 28px;
-	display: flex;
-	flex-direction: column;
-	gap: 28px;
-}
-
-.input,
-.btn {
-	font-family: var(--roboto);
-	width: 100%;
-	padding: 20px 18px;
-	border: 1px solid var(--gray-color);
-	border-radius: 12px;
-	background-color: transparent;
-	color: var(--black-color);
-	outline: none;
-}
-
 .controls {
 	margin-top: 50px;
 	width: 100%;
@@ -41,6 +21,14 @@
 }
 
 .btn {
+	font-family: var(--roboto);
+	width: 100%;
+	padding: 20px 18px;
+	border: 1px solid var(--gray-color);
+	border-radius: 12px;
+	background-color: transparent;
+	color: var(--black-color);
+	outline: none;
 	text-transform: uppercase;
 	cursor: pointer;
 	transition: background-color 0.5s ease-in-out;
