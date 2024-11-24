@@ -32,8 +32,10 @@ export const ProfilePage = () => {
 	}, []);
 
 	const handleSave = (updatedData) => {
+		//console.log(updatedData);
 		setProfileData(updatedData);
 		saveProfileData(updatedData);
+		alert("Success!!!");
 	};
 
 	return (

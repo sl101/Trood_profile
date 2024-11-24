@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AvatarUploader, ProfileData, ProfileVisibility } from "../";
+import { AvatarUploader, ProfileData, ProfileInterests, ProfileVisibility } from "../";
 import {
 	validateName,
 	validateLastname,
@@ -66,45 +66,14 @@ const inputFields = [
 
 export const ProfileForm = ({ profileData, onSave }) => {
 	const [formData, setFormData] = useState(profileData);
-	const [newInterest, setNewInterest] = useState("");
-	const [isAddingInterest, setIsAddingInterest] = useState(false);
 	const [errors, setErrors] = useState({});
+	const [isAddingInterest, setIsAddingInterest] = useState(false);
 
 	useEffect(() => {
 		setFormData(profileData);
 	}, [profileData]);
 
-	const handleAvatarChange = (avatarPath) => {
-		setFormData((prev) => ({
-			...prev,
-			avatar: avatarPath,
-		}));
-	};
 
-	const handleAddInterest = () => {
-		const trimmedInterest = newInterest.trim();
-		const error = validateInterests([...formData.interests, trimmedInterest]);
-
-		if (error) {
-			setErrors((prev) => ({ ...prev, interests: error }));
-			return;
-		}
-
-		setFormData((prev) => ({
-			...prev,
-			interests: [...prev.interests, trimmedInterest],
-		}));
-		setNewInterest("");
-		setErrors((prev) => ({ ...prev, interests: "" }));
-		setIsAddingInterest(false);
-	};
-
-	const handleRemoveInterest = (index) => {
-		setFormData((prev) => ({
-			...prev,
-			interests: prev.interests.filter((_, i) => i !== index),
-		}));
-	};
 
 	const handleCancel = (e) => {
 		e.preventDefault();
@@ -122,12 +91,16 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				if (error) newErrors[name] = error;
 			}
 		});
-
 		//newErrors.interests = validateInterests(formData.interests);
 		//newErrors.visibility = validateVisibility(formData.visibility);
+		//console.log(Object.keys(newErrors).length);
 
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors);
+			return;
+		}
+
+		if (isAddingInterest) {
 			return;
 		}
 
@@ -138,7 +111,8 @@ export const ProfileForm = ({ profileData, onSave }) => {
 		<form className={styles.form} onSubmit={handleSave} >
 			<AvatarUploader
 				avatarPath={formData.avatar}
-				onAvatarChange={handleAvatarChange} />
+				setFormData={setFormData} />
+			{/*onAvatarChange={handleAvatarChange} />*/}
 
 			<ProfileData
 				inputFields={inputFields}
@@ -151,63 +125,17 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				formData={formData}
 				setFormData={setFormData} />
 
-			{/*<div className={styles.field}>
-				<label htmlFor="interests">The scope of your interest:</label>
-				<div className={styles.interests}>
-					{formData.interests.map((interest, index) => (
-						<div key={index} className={styles.interest}>
-							<span>{interest}</span>
-							<button
-								type="button"
-								onClick={() => handleRemoveInterest(index)}
-								className={styles.remove}
-							>
-								&times;
-							</button>
-						</div>
-					))}
-				</div>
-
-				{isAddingInterest && (
-					<div className={styles.addInterest}>
-						<input
-							type="text"
-							value={newInterest}
-							onChange={(e) => setNewInterest(e.target.value)}
-							placeholder="Enter a new interest"
-							maxLength={30}
-						/>
-						<button type="button" onClick={handleAddInterest}>
-							Save
-						</button>
-						<button
-							type="button"
-							onClick={() => setIsAddingInterest(false)}
-							className={styles.cancel}
-						>
-							Cancel
-						</button>
-					</div>
-				)}
-
-				{!isAddingInterest && formData.interests.length < 10 && (
-					<button
-						type="button"
-						onClick={() => setIsAddingInterest(true)}
-						className={styles.addButton}
-					>
-						Add Interest
-					</button>
-				)}
-
-				{errors.interests && <p className={styles.error}>{errors.interests}</p>}
-			</div>*/}
+			<ProfileInterests
+				formData={formData}
+				setFormData={setFormData}
+				isAddingInterest={isAddingInterest}
+				setIsAddingInterest={setIsAddingInterest} />
 
 			<div className={styles.controls}>
 				<button type="submit" className={styles.btn} onClick={handleSave}>
 					Save
 				</button>
-				<button onClick={handleCancel} className={styles.btn}>
+				<button type="button" onClick={handleCancel} className={styles.btn}>
 					Cancel
 				</button>
 			</div >

@@ -1,0 +1,77 @@
+.content {
+	width: 100%;
+	min-height: 29px;
+	margin-top: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	align-items: center;
+	gap: 16px;
+	color: var(--dark-gray);
+}
+
+.interest_title {
+	flex-shrink: 0;
+}
+
+.interest {
+	min-width: 60px;
+	position: relative;
+	z-index: 20;
+	font-size: 16px;
+	padding: 4px 16px;
+	border: 1px solid var(--dark-gray);
+	border-radius: 100px;
+	color: var(--dark-gray);
+	cursor: pointer;
+}
+
+.add_button {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	border-radius: 50%;
+	border: 1px solid transparent;
+	color: var(--dark-gray);
+	cursor: pointer;
+	outline: none;
+	transition: color 0.5s ease-in-out, border-color 0.5s ease-in-out,
+		background-color 0.5s ease-in-out;
+}
+
+.add_button:hover {
+	border-color: var(--dark-gray);
+	background-color: var(--brand-light);
+}
+
+.add_button:focus {
+	border-color: var(--dark-gray);
+}
+
+.interest:hover button {
+	opacity: 1;
+	visibility: visible;
+}
+
+.add_interest {
+	width: 90px;
+	position: relative;
+	z-index: 20;
+	font-size: 16px;
+	padding: 4px 10px;
+	border: 1px solid var(--dark-gray);
+	border-radius: 100px;
+	color: var(--dark-gray);
+	background-color: transparent;
+	outline: none;
+}
+
+.add_interest input {
+	width: 100%;
+	background-color: transparent;
+	outline: none;
+	border: none;
+}

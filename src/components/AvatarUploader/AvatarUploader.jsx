@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
-import styles from './AvatarUploader.module.css';
 import { MdOutlineAddAPhoto } from "react-icons/md";
+import styles from './AvatarUploader.module.css';
 
-export const AvatarUploader = ({ avatarPath, onAvatarChange }) => {
+export const AvatarUploader = ({ avatarPath, setFormData }) => {
 
 	const [preview, setPreview] = useState(avatarPath || "");
 
 	useEffect(() => {
-		//if (avatarPath) {
 		setPreview(avatarPath || "");
-		//}
 	}, [avatarPath]);
+
+
+	const handleAvatarChange = (avatarPath) => {
+		setFormData((prev) => ({
+			...prev,
+			avatar: avatarPath,
+		}));
+	};
+
 
 	const handleFileChange = (e) => {
 		const file = e.target.files[0];
@@ -30,7 +37,7 @@ export const AvatarUploader = ({ avatarPath, onAvatarChange }) => {
 			reader.onloadend = () => {
 				const base64Image = reader.result;
 				setPreview(base64Image);
-				onAvatarChange(base64Image);
+				handleAvatarChange(base64Image);
 			};
 
 			reader.readAsDataURL(file);
@@ -49,8 +56,6 @@ export const AvatarUploader = ({ avatarPath, onAvatarChange }) => {
 						</div>
 					)}
 				</div>
-
-				{/*<img src={avatar || <MdOutlineAddAPhoto />} alt="Avatar" />*/}
 
 				<input className={styles.input} type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} />
 			</label>

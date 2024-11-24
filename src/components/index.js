@@ -7,6 +7,8 @@ import { ProfileForm } from "./ProfileForm/ProfileForm";
 import { AvatarUploader } from "./AvatarUploader/AvatarUploader";
 import { ProfileData } from "./ProfileData/ProfileData";
 import { InputField } from "./InputField/InputField";
+import { CircleButton } from "./CircleButton/CircleButton";
 import { ProfileVisibility } from "./ProfileVisibility/ProfileVisibility";
+import { ProfileInterests } from "./ProfileInterests/ProfileInterests";
 
-export { Header, ProfilePage, ProjectsSection, TasksSection, CardItem, ProfileForm, AvatarUploader, ProfileData, InputField, ProfileVisibility };
+export { Header, ProfilePage, ProjectsSection, TasksSection, CardItem, ProfileForm, AvatarUploader, ProfileData, InputField, CircleButton, ProfileVisibility, ProfileInterests };

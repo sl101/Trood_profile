@@ -52,20 +52,37 @@ export const validateExpirience = (value) => {
 	return "";
 };
 
+export const validateVisibility = (value) => {
+	const validOptions = ["Public", "Private"];
+	if (!validOptions.includes(value)) return "Invalid visibility option.";
+	return null;
+};
+
 export const validateInterests = (interests) => {
+
+	let message;
+
 	if (interests.length > 10) {
-		return "You can add up to 10 interests only.";
+		message = "You can add up to 10 interests only.";
 	}
+
+	interests.forEach(interest => {
+
+		if (interest === "") {
+			message = "You must enter a value";
+		}
+	});
 
 	const invalidInterest = interests.find(
 		(interest) =>
-			interest.length > 30 || !/^[\wа-яА-ЯёЁ\s.,]+$/u.test(interest.trim())
+			interest.length > 30 ||
+			!/^[\wа-яА-ЯёЁ\s.,]+$/u.test(interest.trim())
 	);
 
 	if (invalidInterest) {
-		return `Invalid interest: "${invalidInterest}". 
-            Only letters, numbers, spaces, commas, and dots are allowed. Max length: 30 characters.`;
+		message = `Invalid interest: "${invalidInterest}".
+		Only letters, numbers, spaces, commas, and dots are allowed. Max length: 30 characters.`;
 	}
 
-	return "";
+	return message ? message : null;
 };
