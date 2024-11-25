@@ -58,11 +58,11 @@
 }
 
 .remove_button:hover svg {
-	transform: translateY(-2px);
+	fill: var(--error-color);
 }
 
 .remove_button:active svg {
-	transform: scale(0.9);
+	transform: translateY(1px);
 }
 
 @media (max-width: 480px) {
