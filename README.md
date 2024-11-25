@@ -84,6 +84,7 @@ trood_accout_page/
 ├── vite.config.js       # Vite configuration
 └── README.md            # Project documentation
 
+
 ## Project Requirements Implementation
 
 - **Figma Mockup:** The application is designed based on the provided Figma mockup.
