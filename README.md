@@ -39,8 +39,6 @@ Trood Profile Page is a single-page application (SPA) built with React. It provi
 - `gh-pages`: ^6.2.0
 - `vite`: ^5.4.10
 
----
-
 ## Installation and Setup
 
 ### 1. Clone the Repository
@@ -48,58 +46,63 @@ Trood Profile Page is a single-page application (SPA) built with React. It provi
 	- git clone https://github.com/sl101/Trood_profile.git
 	- cd Trood_profile
 
-### 2. Установка зависимостей
-  - npm install
+### 2. Install Dependencies
+Run the following command to install all required dependencies:
 
-### 3. Запуск проекта в режиме разработки
-Для локального запуска используйте команду:
+	- npm install
 
-  - npm run dev
+### 3. Start the Development Server
+To start the project locally in development mode, use:
 
-Откройте браузер и перейдите по адресу: http://localhost:5173.
+	- npm run dev
 
-### 4.Сборка проекта для продакшена и деплой на GitHub Pages
-Чтобы собрать проект, выполните:
+Open your browser and navigate to: http://localhost:5173.
 
-  - npm run build
-  - npm run deploy
-Приложение будет опубликовано на https://sl101.github.io/Trood_profile
+### 4. Build and Deploy on GitHub Pages
+To build the project for production, run:
 
-### Структура проекта
+	- npm run build
+	- npm run deploy
+
+The application will be available at:
+https://sl101.github.io/Trood_profile.
+
+## Project Structure
 
 trood_accout_page/
-├── public/              # Статические файлы
+├── public/              # Static files
 ├── src/
-│   ├── components/      # React-компоненты
-│   ├── context/         # Контексты (NotificationContext)
-│   ├── services/        # Валидация и работа с LocalStorage
-│   ├── App.jsx          # Корневой компонент приложения
-│   ├── main.jsx         # Точка входа приложения
-│   └── index.css        # Общие стили
-├── dist/                # Сборка проекта
-├── .gitignore           # Исключения для Git
-├── package.json         # Настройки проекта и зависимости
-├── vite.config.js       # Конфигурация Vite
-└── README.md            # Документация проекта
+│   ├── components/      # React components
+│   ├── context/         # Contexts (NotificationContext)
+│   ├── services/        # Validation and LocalStorage utilities
+│   ├── App.jsx          # Root component
+│   ├── main.jsx         # Entry point
+│   └── index.css        # Global styles
+├── dist/                # Built project
+├── .gitignore           # Git ignore file
+├── package.json         # Project settings and dependencies
+├── vite.config.js       # Vite configuration
+└── README.md            # Project documentation
 
-### Реализация требований
-- **Макет из Figma:** проект разработан на основании предоставленного макета.
-- **Загрузка аватара:** реализована с использованием Base64, данные хранятся в LocalStorage.
-- **Дополнительные кнопки:** добавлены кнопки "Сохранить" и "Отменить" для удобства пользователя.
-- **Валидация полей:** выделена в отдельный модуль для упрощения поддержки.
-- **Работа с LocalStorage:** все функции загрузки и сохранения данных выделены в отдельный файл, что позволяет в дальнейшем заменить LocalStorage на взаимодействие с бэкендом.
-- **Base64:** изображения аватара конвертируются в формат Base64 и сохраняются вместе с другими данными пользователя.
-- **Дополнительная работа** с состояниями:
-   - Использован useState для управления состояниями.
-   - Использован useEffect для отработки логики загрузки данных.
-   - Использован NotificationContext для централизованной обработки уведомлений.
+## Project Requirements Implementation
 
-### Дополнительные команды
-- Линтинг кода: npm run lint
-- Предпросмотр сборки: npm run preview 
+- **Figma Mockup:** The application is designed based on the provided Figma mockup.
+- **Avatar Upload:** Avatar images are uploaded, converted to Base64, and stored in LocalStorage.
+- **Additional Buttons:** "Save" and "Cancel" buttons are implemented for better user interaction.
+- **Validation:** Input validation logic is placed in a separate module.
+- **LocalStorage Utilities:** Functions for saving and loading profile data are isolated for easier maintenance and future backend integration.
+- **Base64 Storage:** Avatar images are encoded in Base64 and stored with other profile data in LocalStorage.
+- **React Hooks:** с состояниями:
+   - useState for managing component states.
+   - useEffect for data fetching and side effects.
+   - NotificationContext for centralized notification handling using useContext.
 
-### Контактная информация
-Если у вас есть вопросы, свяжитесь со мной через GitHub или telegramm (https://t.me/Viacheslav_Zhevaha) 
+### Additional Commands
+- **Linting кода:** npm run lint
+- **Preview Build:** npm run preview 
+
+### Contact Information
+If you have any questions, feel free to reach out via [GitHub](https://github.com/sl101) or Telegram: [Viacheslav Zhevaha](https://t.me/Viacheslav_Zhevaha). 
 
 
 
