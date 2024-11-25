@@ -44,7 +44,7 @@ Trood Profile Page is a single-page application (SPA) built with React. It provi
 ## Installation and Setup
 
 ### 1. Clone the Repository
-```bash
+
 	- git clone https://github.com/sl101/Trood_profile.git
 	- cd Trood_profile
 
