@@ -1,4 +1,4 @@
-## [Open Project](https://sl101.github.io/Viacheslav-Zhevaha_CV/)
+## [Open Project](https://sl101.github.io/Trood_profile)
 
 # React + Vite
 
