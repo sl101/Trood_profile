@@ -84,7 +84,7 @@ export const validateInterests = (interests) => {
 
 export const validateProfileLink = (link) => {
 	if (!link) {
-		return "";
+		return "The link must be a valid URL ";
 	}
 
 	if (link.length > 200) {

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import uuid from 'react-uuid';
 import { ProfileLink, CircleButton } from "../";
 import { validateProfileLink } from "../../services/validation";
+import { NotificationContext } from "../../context/NotificationContext";
 import styles from './ProfileLinks.module.css';
 
 export const ProfileLinks = ({ initial_links = [], onSave }) => {
@@ -15,9 +16,15 @@ export const ProfileLinks = ({ initial_links = [], onSave }) => {
 	const [isAdding, setIsAdding] = useState(false);
 	const [error, setError] = useState("");
 
+	const { message } = useContext(NotificationContext);
+
 	useEffect(() => {
 		setLinks(initial_links);
 	}, [initial_links]);
+
+	useEffect(() => {
+		if (message) handleCanselLink();
+	}, [message]);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -49,6 +56,12 @@ export const ProfileLinks = ({ initial_links = [], onSave }) => {
 		const updatedLinks = links.filter((link) => link.id !== id);
 		setLinks(updatedLinks);
 		if (onSave) onSave(updatedLinks);
+	};
+
+	const handleCanselLink = () => {
+		setIsAdding(false);
+		setNewLink({ site_name: "", url: "" });
+		setError("");
 	};
 
 	return (
@@ -84,11 +97,7 @@ export const ProfileLinks = ({ initial_links = [], onSave }) => {
 							click={handleAddLink} />
 						<CircleButton
 							text="-"
-							click={() => {
-								setIsAdding(false);
-								setNewLink({ site_name: "", url: "" });
-								setError("");
-							}} />
+							click={handleCanselLink} />
 						<p className={`${styles.error} ${error ? styles["active_arror"] : ''}`}>{error}</p>
 					</div>
 				</>

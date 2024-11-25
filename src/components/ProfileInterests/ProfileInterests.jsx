@@ -8,7 +8,7 @@ export const ProfileInterests = ({ title, list, onSave }) => {
 
 	const [newInterest, setNewInterest] = useState("");
 	const [isAddingInterest, setIsAddingInterest] = useState(false);
-	const { message } = useContext(NotificationContext);
+	const { message, setMessage } = useContext(NotificationContext);
 
 	useEffect(() => {
 		if (message) {
@@ -22,7 +22,7 @@ export const ProfileInterests = ({ title, list, onSave }) => {
 		const error = validateInterests([...list, trimmedInterest]);
 
 		if (error) {
-			alert(error);
+			setMessage(error);
 			return;
 		}
 		onSave([...list, trimmedInterest]);
