@@ -11,8 +11,9 @@
 	border: 1px solid transparent;
 	color: var(--dark-gray);
 	border-radius: 100%;
+	outline: none;
 	cursor: pointer;
-	transition: color 0.5s ease-in-out, border-color 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, background-color 0.5s ease-in-out;
+	transition: color var(--transition), border-color var(--transition), opacity var(--transition), visibility var(--transition), background-color var(--transition);
 }
 
 .btn_add,
@@ -44,4 +45,8 @@
 	color: var(--black-color);
 	border-color: var(--black-color);
 	background-color: var(--brand-light);
+}
+
+.btn:focus {
+	border-color: var(--dark-gray);
 }

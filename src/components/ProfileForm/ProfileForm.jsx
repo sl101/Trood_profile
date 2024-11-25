@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { AvatarUploader, ProfileData, ProfileInterests, ProfileVisibility } from "../";
+import { useContext, useEffect, useState } from "react";
+import { AvatarUploader, ProfileData, ProfileInterests, ProfileLinks, ProfileVisibility } from "../";
 import {
 	validateName,
 	validateLastname,
@@ -7,8 +7,7 @@ import {
 	validatePhone,
 	validateEmail,
 	validateAddress,
-	validateExpirience,
-	validateInterests
+	validateExpirience
 } from "../../services/validation";
 import styles from "./ProfileForm.module.css";
 
@@ -67,7 +66,6 @@ const inputFields = [
 export const ProfileForm = ({ profileData, onSave }) => {
 	const [formData, setFormData] = useState(profileData);
 	const [errors, setErrors] = useState({});
-	const [isAddingInterest, setIsAddingInterest] = useState(false);
 
 	useEffect(() => {
 		setFormData(profileData);
@@ -91,16 +89,9 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				if (error) newErrors[name] = error;
 			}
 		});
-		//newErrors.interests = validateInterests(formData.interests);
-		//newErrors.visibility = validateVisibility(formData.visibility);
-		//console.log(Object.keys(newErrors).length);
 
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors);
-			return;
-		}
-
-		if (isAddingInterest) {
 			return;
 		}
 
@@ -112,7 +103,6 @@ export const ProfileForm = ({ profileData, onSave }) => {
 			<AvatarUploader
 				avatarPath={formData.avatar}
 				setFormData={setFormData} />
-			{/*onAvatarChange={handleAvatarChange} />*/}
 
 			<ProfileData
 				inputFields={inputFields}
@@ -126,10 +116,26 @@ export const ProfileForm = ({ profileData, onSave }) => {
 				setFormData={setFormData} />
 
 			<ProfileInterests
-				formData={formData}
-				setFormData={setFormData}
-				isAddingInterest={isAddingInterest}
-				setIsAddingInterest={setIsAddingInterest} />
+				title="The scope of your interest:"
+				list={formData.interests}
+				onSave={(updated_interests) =>
+					setFormData((prev) => ({ ...prev, interests: updated_interests }))
+				}
+			/>
+
+			<ProfileInterests
+				title="Potential Interests"
+				list={formData.potential_interests}
+				onSave={(updated_interests) =>
+					setFormData((prev) => ({ ...prev, potential_interests: updated_interests }))
+				}
+			/>
+
+			<ProfileLinks
+				initial_links={formData.links}
+				onSave={(updatedLinks) =>
+					setFormData((prev) => ({ ...prev, links: updatedLinks }))
+				} />
 
 			<div className={styles.controls}>
 				<button type="submit" className={styles.btn} onClick={handleSave}>

@@ -8,6 +8,7 @@
 	--brand-dark: #a6c5e3;
 	--brand-light: #e9f2f3;
 	--gray-color: rgba(0, 0, 0, 0.5);
+	--dark-transparent: rgba(0, 0, 0, 0.8);
 	--dark-gray: #49535c;
 	--light-color: #f5f4f4;
 	--dark-color: #d9d9d9;
@@ -21,11 +22,17 @@
 	--roboto: "Roboto", serif;
 	--inter-regular: "Inter-Regular", serif;
 	--inter-medium: "Inter-Medium", serif;
+
+	--transition: .4s ease-in-out
 }
 
 button {
 	background-color: inherit;
 	border: none;
+}
+
+a {
+	text-decoration: none;
 }
 
 ul,

@@ -44,11 +44,6 @@ export const validateExpirience = (value) => {
 		return "Experience must not exceed 500 characters.";
 	}
 
-	const experienceRegex = /^[\wа-яА-ЯёЁ0-9\s.,'"\-()!]+$/u;
-	if (!experienceRegex.test(value)) {
-		return "Experience contains invalid characters.";
-	}
-
 	return "";
 };
 
@@ -85,4 +80,21 @@ export const validateInterests = (interests) => {
 	}
 
 	return message ? message : null;
+};
+
+export const validateProfileLink = (link) => {
+	if (!link) {
+		return "";
+	}
+
+	if (link.length > 200) {
+		return "The link must be 200 characters or less.";
+	}
+
+	const urlPattern = /^(https?:\/\/)[^\s/$.?#].[^\s]*$/i;
+	if (!urlPattern.test(link.trim())) {
+		return "The link must be a valid URL starting with http:// or https://.";
+	}
+
+	return "";
 };

@@ -12,7 +12,7 @@
 }
 
 .controls {
-	margin-top: 50px;
+	margin-top: clamp(20px, 6vw, 40px);
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -23,7 +23,7 @@
 .btn {
 	font-family: var(--roboto);
 	width: 100%;
-	padding: 20px 18px;
+	padding-block: clamp(10px, 3vw, 20px);
 	border: 1px solid var(--gray-color);
 	border-radius: 12px;
 	background-color: transparent;
@@ -31,9 +31,21 @@
 	outline: none;
 	text-transform: uppercase;
 	cursor: pointer;
-	transition: background-color 0.5s ease-in-out;
+	transition: background-color var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .btn:hover {
 	background-color: var(--brand-light);
+}
+
+.btn:focus {
+	border-color: var(--black-color);
+	color: var(--black-color);
+}
+
+
+@media (max-width: 480px) {
+	.controls {
+		flex-wrap: wrap;
+	}
 }

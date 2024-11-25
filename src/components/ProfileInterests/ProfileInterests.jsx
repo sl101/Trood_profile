@@ -1,33 +1,38 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { validateInterests } from "../../services/validation";
 import { CircleButton } from "../";
+import { NotificationContext } from "../../context/NotificationContext";
 import styles from './ProfileInterests.module.css';
 
-export const ProfileInterests = ({ formData, setFormData, isAddingInterest, setIsAddingInterest }) => {
+export const ProfileInterests = ({ title, list, onSave }) => {
+
 	const [newInterest, setNewInterest] = useState("");
+	const [isAddingInterest, setIsAddingInterest] = useState(false);
+	const { message } = useContext(NotificationContext);
+
+	useEffect(() => {
+		if (message) {
+			setIsAddingInterest(false);
+			setNewInterest("");
+		}
+	}, [message]);
 
 	const handleAddInterest = () => {
 		const trimmedInterest = newInterest.trim();
-		const error = validateInterests([...formData.interests, trimmedInterest]);
+		const error = validateInterests([...list, trimmedInterest]);
 
 		if (error) {
 			alert(error);
 			return;
 		}
-
-		setFormData((prev) => ({
-			...prev,
-			interests: [...prev.interests, trimmedInterest],
-		}));
+		onSave([...list, trimmedInterest]);
 		setNewInterest("");
 		setIsAddingInterest(false);
 	};
 
 	const handleRemoveInterest = (index) => {
-		setFormData((prev) => ({
-			...prev,
-			interests: prev.interests.filter((_, i) => i !== index),
-		}));
+		const updatedList = list.filter((_, i) => i !== index);
+		onSave(updatedList);
 	};
 
 	const handleCancelInterest = (e) => {
@@ -38,8 +43,8 @@ export const ProfileInterests = ({ formData, setFormData, isAddingInterest, setI
 
 	return (
 		<ul className={styles.content}>
-			<p className={styles.interest_title}>The scope of your interest:</p>
-			{formData.interests.map((interest, index) => (
+			<h4 className={styles.title}>{title}</h4>
+			{list.map((interest, index) => (
 				<li key={index}
 					className={styles.interest}>
 					<span>{interest}</span>
@@ -47,7 +52,7 @@ export const ProfileInterests = ({ formData, setFormData, isAddingInterest, setI
 				</li>
 			))}
 			{!isAddingInterest &&
-				formData.interests.length < 10 ?
+				list.length < 10 ?
 				<CircleButton text="+" click={() => setIsAddingInterest(true)} /> :
 				<div className={styles.add_interest}>
 					<input
@@ -56,7 +61,7 @@ export const ProfileInterests = ({ formData, setFormData, isAddingInterest, setI
 						onChange={(e) => setNewInterest(e.target.value)}
 						maxLength={30} />
 					<CircleButton text="+" click={handleAddInterest} content="btn_add" />
-					<CircleButton text="-" click={handleCancelInterest} content="btn_cancel" />
+					<CircleButton text="-" click={(handleCancelInterest)} content="btn_cancel" />
 				</div>
 			}
 		</ul>

@@ -8,8 +8,8 @@ export const ProfileVisibility = ({ formData, setFormData }) => {
 	};
 
 	return (
-		<div className={styles.radio_content}>
-			<p className={styles.label}>Show your profile in Launchpad?</p>
+		<div className={styles.content}>
+			<h4 className={styles.title}>Show your profile in Launchpad?</h4>
 			<div className={styles.radio_group}>
 				{["Private", "Public"].map((value) => (
 					<label key={value} className={styles.radio_label}>

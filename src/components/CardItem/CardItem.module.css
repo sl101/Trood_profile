@@ -27,7 +27,7 @@
 	border-radius: 50%;
 	border: 1px solid transparent;
 	color: var(--gray-color);
-	transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+	transition: background-color var(--transition), border-color var(--transition);
 }
 
 .card_action:hover {

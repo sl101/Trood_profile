@@ -10,8 +10,9 @@
 	color: var(--dark-gray);
 }
 
-.interest_title {
+.title {
 	flex-shrink: 0;
+	font-weight: 400;
 }
 
 .interest {
@@ -38,8 +39,8 @@
 	color: var(--dark-gray);
 	cursor: pointer;
 	outline: none;
-	transition: color 0.5s ease-in-out, border-color 0.5s ease-in-out,
-		background-color 0.5s ease-in-out;
+	transition: color var(--transition), border-color var(--transition),
+		background-color var(--transition);
 }
 
 .add_button:hover {
