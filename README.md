@@ -69,20 +69,20 @@ https://sl101.github.io/Trood_profile.
 
 ## Project Structure
 
-trood_accout_page/
-├── public/              # Static files
-├── src/
-│   ├── components/      # React components
-│   ├── context/         # Contexts (NotificationContext)
-│   ├── services/        # Validation and LocalStorage utilities
-│   ├── App.jsx          # Root component
-│   ├── main.jsx         # Entry point
-│   └── index.css        # Global styles
-├── dist/                # Built project
-├── .gitignore           # Git ignore file
-├── package.json         # Project settings and dependencies
-├── vite.config.js       # Vite configuration
-└── README.md            # Project documentation
+	- trood_accout_page/
+	- ├── public/              # Static files
+	- ├── src/
+	- │   ├── components/      # React components
+	- │   ├── context/         # Contexts (NotificationContext)
+	- │   ├── services/        # Validation and LocalStorage utilities
+	- │   ├── App.jsx          # Root component
+	- │   ├── main.jsx         # Entry point
+	- │   └── index.css        # Global styles
+	- ├── dist/                # Built project
+	- ├── .gitignore           # Git ignore file
+	- ├── package.json         # Project settings and dependencies
+	- ├── vite.config.js       # Vite configuration
+	- └── README.md            # Project documentation
 
 
 ## Project Requirements Implementation
